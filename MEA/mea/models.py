@@ -20,10 +20,13 @@ class Marca(Relacion):
 class MEA(models.Model):
     nombre_producto = models.CharField(max_length=150, verbose_name='Nombre del Producto')
     marca = models.ForeignKey(Marca, verbose_name='Marca', on_delete=models.CASCADE)
+    desc = models.CharField(max_length=150, verbose_name='Descripcion')
+    color = models.CharField(max_length=150, verbose_name='Color')
     cantidad = models.IntegerField( verbose_name='Cantidad Disponible')
     peso_neto = models.CharField(max_length=50, verbose_name='Peso neto, ml/gr')
     codigo = models.BigIntegerField( verbose_name='Código')
-    precio = models.DecimalField(max_digits=10, decimal_places=2,  verbose_name='Precio')
+    precio = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
+
 
     class Meta:
         verbose_name = 'MEA'
@@ -47,7 +50,7 @@ class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente, verbose_name='Cliente', on_delete=models.CASCADE)
     productos = models.ManyToManyField(MEA, verbose_name=('Prodcutos'))
     pago = models.BooleanField(default=True)
-    nota = models.CharField(max_length=150)
+    nota = models.CharField(max_length=150, blank=True)
     fecha = models.DateTimeField(auto_created=True,verbose_name='Fecha del pedido')
     
     class Meta:

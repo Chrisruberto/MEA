@@ -3,7 +3,7 @@ from .models import Marca, MEA, Cliente, Pedido
 # Register your models here.
 
 class Admin(admin.ModelAdmin):
-    list_display = ['id','marca','nombre_producto', 'cantidad', 'peso_neto', 'precio', 'codigo' ]
+    list_display = ['id','marca','nombre_producto', 'cantidad','color', 'desc', 'peso_neto', 'precio', 'codigo' ]
     list_filter = ['marca',]
     search_fields = ['nombre_producto']
         
