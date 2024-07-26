@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'django_cryptography',
     'mea',
 ]
 
@@ -127,34 +129,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #jazzmin settings:
 
 JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "MEA Admin",
-
-    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_header": "Inventario",
-
-    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Inventario",
-
-    # Logo to use for your site, must be present in static files, used for brand on top left
-    #"site_logo": "books/img/logo.png",
-
-    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
-
-    # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
-    # for the full list of 5.13.0 free icon classes
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
         "mea.MEA": "fas fa-cubes",
         "mea.Marca": "fas fa-shapes",
-    }
+    },
+    "custom_links": {
+        "mea": [  # Reemplaza 'mea' con el nombre de la app correspondiente si es diferente
+            {
+                "name": "Ventas",
+                "url": "cliente_venta",  # El nombre de la URL definida en urls.py
+                "icon": "fas fa-dollar-sign",  # El icono que quieras usar
+                "permissions": ["mea.view_mea"],  # Permisos necesarios para ver el enlace
+            },
+        ]
+    },
 }
 
 JAZZMIN_UI_TWEAKS = {
-    
     "theme": "flatly",
     "dark_mode_theme": "darkly",
 }
