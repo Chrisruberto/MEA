@@ -1,5 +1,8 @@
 from django.contrib import admin
+from django import forms
 from .models import Marca, MEA, Cliente, Pedido,PedidoProducto
+from django.contrib import admin, messages
+from django.core.exceptions import ValidationError
 # Register your models here.
 
 class Admin(admin.ModelAdmin):
@@ -17,9 +20,20 @@ class AdminP(admin.ModelAdmin):
 
 class PedidoProductoInline(admin.TabularInline):
     model = PedidoProducto
-    extra = 1
+    extra = 0
     exclude = ('precio',)
     readonly_fields = ('get_precio_total_display',)
+
+    def save_formset(self, request, form, formset, change):
+        # Validar los formularios del formset
+        for form in formset.forms:
+            if form.is_valid():
+                try:
+                    form.instance.clean()
+                except ValidationError as e:
+                    form._errors[forms.forms.NON_FIELD_ERRORS] = forms.utils.ErrorList([str(e)])
+
+        super().save_formset(request, form, formset, change)
 
 class PedidoAdmin(admin.ModelAdmin):
     list_display = ['cliente', 'pago', 'nota', 'fecha', 'entregado', 'precio_total']

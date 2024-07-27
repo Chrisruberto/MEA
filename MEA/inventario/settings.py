@@ -141,12 +141,12 @@ JAZZMIN_SETTINGS = {
         "mea.Marca": "fas fa-shapes",
     },
     "custom_links": {
-        "mea": [  # Reemplaza 'mea' con el nombre de la app correspondiente si es diferente
+        "mea": [  
             {
                 "name": "Ventas",
-                "url": "cliente_venta",  # El nombre de la URL definida en urls.py
-                "icon": "fas fa-dollar-sign",  # El icono que quieras usar
-                "permissions": ["mea.view_mea"],  # Permisos necesarios para ver el enlace
+                "url": "cliente_venta",  
+                "icon": "fas fa-dollar-sign",  
+                "permissions": ["mea.view_mea"],  
             },
         ]
     },
